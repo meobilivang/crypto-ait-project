@@ -136,7 +136,7 @@ class SiFTShell(cmd.Cmd):
                         uplp.handle_upload_client(cmd_req_struct['param_1'])
                     except SiFT_UPL_Error as e:
                         print('Remote_Error: ' + e.err_msg)
-                    else: 
+                    else:
                         print('Completed.')
 
     def do_dnl(self, arg):
