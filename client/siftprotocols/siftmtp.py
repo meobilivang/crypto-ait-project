@@ -2,6 +2,8 @@
 
 import socket
 
+from typing import Optional
+
 from Crypto import Random
 from Crypto.Protocol.KDF import PBKDF2
 from Crypto.Hash import SHA256
@@ -318,7 +320,11 @@ class SiFT_MTP:
 
     # builds and sends message of a given type using the provided payload
     def send_msg(
-        self, msg_type, msg_payload, tk: bytes | None = None, login: bool = False
+        self,
+        msg_type,
+        msg_payload,
+        tk: Optional[bytes] = None,
+        login: bool = False,
     ):
         # build message
         msg_size = self.size_msg_hdr + len(msg_payload) + self.size_msg_mac
