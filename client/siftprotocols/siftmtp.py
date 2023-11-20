@@ -5,7 +5,7 @@ import socket
 from typing import Optional
 
 from Crypto import Random
-from Crypto.Protocol.KDF import PBKDF2
+from Crypto.Protocol.KDF import HKDF
 from Crypto.Hash import SHA256
 from siftprotocols.utils.crypto import (
     rsa_dec_symkey,
@@ -96,12 +96,11 @@ class SiFT_MTP:
         Args:
             request_hash (bytes): hash value of Login Request
         """
-        k = PBKDF2(
+        k = HKDF(
             self.client_random + self.server_random,
-            request_hash,
             self.size_msg_final_transfer_key,
-            count=100000,
-            hmac_hash_module=SHA256,
+            request_hash,
+            SHA256,
         )
 
         # discard client_random & server_random

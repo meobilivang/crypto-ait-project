@@ -233,3 +233,4 @@ class SiFT_LOGIN:
         self.mtp.server_random = login_res_struct["server_random"]
         # compute & store final transfer key
         self.mtp.compute_final_transfer_key(request_hash)
+        print("Transfer key: ", self.mtp.final_transfer_key.hex())
